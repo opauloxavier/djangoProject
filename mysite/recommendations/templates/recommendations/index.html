@@ -1,7 +1,7 @@
 {% if artistas %}
     <ul>
     {% for artist in artistas %}
-        <li><a href="artist/{{ artist.id }}/">{{ artist.name }}</a></li>
+        <li><a href="{% url 'detalhes' artist.id %}">{{ artist.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

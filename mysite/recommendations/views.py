@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponse,render
+from django.shortcuts import HttpResponse,render,get_object_or_404
 
 from .models import Artista
 
@@ -9,7 +9,9 @@ def index(request):
     return render(request, 'recommendations/index.html', context)
 
 def artist(request, artist_id):
-    return HttpResponse("Artista %s." % artist_id)
+    artista =get_object_or_404(Artista, pk=artist_id)
+
+    return render(request, 'recommendations/detail.html', {'artista': artista})
 
 def album(request, album_id):
     return HttpResponse("Album %s." % album_id)
