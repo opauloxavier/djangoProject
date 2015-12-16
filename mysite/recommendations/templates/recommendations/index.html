@@ -1,9 +1,111 @@
-{% if artistas %}
-    <ul>
-    {% for artist in artistas %}
-        <li><a href="{% url 'detalhes' artist.id %}">{{ artist.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+				<img class="first-slide" style="background-position: 100px;"
+					src="static/assets/img/wesleyAma.jpg" alt="First slide">
+				<div class="container">
+					<div class="carousel-caption">
+						<h1>Entrevista com Safadão</h1>
+						<p>Cantor fala sobre carreira, seu amor pelos fãs e novo
+							Álbum.</p>
+						<p>
+							<a class="btn btn-lg btn-danger" href="recommendations/artistas/3"
+								role="button">Saiba Mais</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+	</div>
+	<!-- /.carousel -->
+	<div class="col-md-8">
+		<div class="row text-center">
+			<!-- Inicio Grid -->
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center" style="margin-bottom: 20px;">Bandas
+						Recomendadas</h3>
+				</div>
+			</div>
+			<div class="row">
+               {% for artist in artistas %}
+					<div class="col-md-3">
+						<a href='recommendations/artistas/{{artist.id}}'>
+						<img class='customThumb img-responsive img-centered' src='static/assets/img/batmanAvatar.jpg' alt='{{artist.name}}'></a>
+						<h4><strong>{{artist.name}}</strong></h4>
+					</div>
+                {% endfor %}
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center" style="margin-bottom: 20px;">Bandas
+						Mais Ouvidas</h3>
+				</div>
+			</div>
+			<div class="row">
+				               {% for artist in artistas %}
+					<div class="col-md-3">
+						<a href='recommendations/artistas/{{artist.id}}'>
+						<img class='customThumb img-responsive img-centered' src='static/assets/img/batmanAvatar.jpg' alt='{{artist.name}}'></a>
+						<h4><strong>{{artist.name}}</strong></h4>
+					</div>
+                {% endfor %}
+			</div>
+
+		</div>
+	</div>
+	<!-- fecha o col-md-8(conteudo a esquerda)-->
+	<div class="col-md-4">
+		<!-- Conteudo a direita-->
+		<div class="col-md-10 col-md-offset-2">
+			<div class="row">
+				<h4 class="text-center">Top Spot-On</h4>
+				<div class="tabbable">
+					<!-- Only required for left/right tabs -->
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#tab1" data-toggle="tab">Músicas</a></li>
+						<li><a href="#tab2" data-toggle="tab">Artistas</a></li>
+						<li><a href="#tab3" data-toggle="tab">Gêneros</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="tab1">
+							<div class="list-group">
+                                 {% for music in musicas  %}
+                                <a class='list-group-item'> {{music.name}}
+                                    <span class='badge'>1</span>
+                                </a>
+                       {% endfor %}
+							</div>
+						</div>
+						<div class="tab-pane" id="tab2">
+							<div class="list-group">
+								     {% for artist in artistas %}
+                                <a href="recommendations/artistas/{{ artist.id }}" class='list-group-item'> {{artist.name}}
+                                    <span class='badge'>1</span>
+                                </a>
+                       {% endfor %}
+							</div>
+						</div>
+						<div class="tab-pane" id="tab3">
+							<div class="list-group">
+							     {% for genero in generos %}
+                                <a class='list-group-item'> {{genero.name}}
+                                    <span class='badge'>1</span>
+                                </a>
+                       {% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- Finaliza o container-fluid-->
+{% endblock %}

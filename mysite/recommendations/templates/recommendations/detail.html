@@ -1,1 +1,87 @@
-{{ artista }}
+{% extends "base.html" %}
+{% block content %}
+<div class="col-md-12">
+    <div class="row">
+      <div class="col-md-2">
+          <img src="static/assets/img/batmanAvatar.jpg" alt="..." class="img-thumbnail img-responsive" >
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-12">
+            <h3>{{artista.name}}</h3>
+          </div>
+          <div class="col-md-8">
+            <h5 style="margin-bottom: 30px;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend, erat sit amet congue mollis, sem nibh efficitur orci, sit amet lacinia nibh libero ut lacus. Etiam rutrum ipsum ac nulla congue condimentum. Curabitur sit amet blandit turpis, nec cursus sem. Curabitur pellentesque rhoncus urna eu hendrerit. Etiam a placerat leo, tristique dapibus sem. Donec ac justo semper arcu bibendum laoreet vel mollis sapien. Maecenas auctor elit vel sapien tempor tempor. Maecenas vulputate a velit sed efficitur. Integer id iaculis sem. Vivamus sed nibh maximus, pulvinar odio non, viverra metus. Donec ut turpis mattis, elementum ipsum eget, placerat leo. Phasellus vestibulum odio leo. Donec rhoncus leo metus, elementum ullamcorper ex condimentum vel. Vestibulum eu euismod augue. Quisque in sollicitudin lectus. Duis quis egestas neque. </h5>
+            <h5><strong>Estilo Principal:</strong> <span class="label label-default">{{artista.genero}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="col-md-8">
+
+    <div class="row">
+      <div class="col-md-6">
+
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+    <div class="row">
+       <table class="table table-striped" style="margin-top: 30px;" >
+        <tr>
+            <th> Música </th>
+            <th> Album </th>
+            <th> Avaliação Média </th>
+            <th> Favorito </th>
+        </tr>
+           {% for music in musicas  %}
+        <tr>
+
+				        		<td>{{music.name}}</td>
+				        		<td>{{musica.album}}</td>
+				        		<td> <span class='glyphicon glyphicon-star'></span>
+				        	       <span class='glyphicon glyphicon-star'></span>
+				        		     <span class='glyphicon glyphicon-star'></span>
+                         <span class='glyphicon glyphicon-star'></span>
+				        		     <span class='glyphicon glyphicon-star'></span>
+				        		</td>
+				        	  <td><a href='#' class='btn btn-danger'><i class='glyphicon glyphicon-heart'></i></a></td>
+        </tr>
+           {% endfor %}
+       </table>
+    </div>
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <div class="row">
+      <div class="row">
+              <div class="tabbable"> <!-- Only required for left/right tabs -->
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab">Top 10</a></li>
+                <li><a href="#tab2" data-toggle="tab">Álbums</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="tab1">
+                    <div class="list-group">
+                        {% for music in musicas  %}
+                 <a class='list-group-item'> {{music.name}}
+                <span class='badge'>1</span>
+                </a>
+                       {% endfor %}
+              </div>
+                </div>
+                <div class="tab-pane fade" id="tab2">
+                    <div class="list-group">
+                         {% for album in albums %}
+                    <a  class='list-group-item'> {{album.name}}
+                <span class='badge'>1</span>
+                </a>
+                        {% endfor %}
+              </div>
+                </div>
+              </div>
+            </div>
+      </div>
+
+ <!-- Finaliza o container-fluid-->
+</div>
+{% endblock %}
